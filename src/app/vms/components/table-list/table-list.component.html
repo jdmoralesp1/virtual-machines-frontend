@@ -1,0 +1,26 @@
+<div style="overflow-x: auto;">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cores</th>
+        <th>RAM</th>
+        <th>Disco</th>
+        <th>Sistema Operativo</th>
+        <th>Creado en</th>
+        <th>Actualizado en</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vm of vms">
+        <td>{{ vm.id }}</td>
+        <td>{{ vm.cores }}</td>
+        <td>{{ vm.ram }} GB</td>
+        <td>{{ vm.disc }} GB</td>
+        <td>{{ vm.operatingSystem }}</td>
+        <td>{{ vm.createdAt }}</td>
+        <td>{{ vm.updatedAt ?? 'Sin fecha de actualización' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

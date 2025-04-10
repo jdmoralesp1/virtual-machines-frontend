@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Propiedad</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td>{{ vm.id }}</td>
+    </tr>
+    <tr>
+      <td>Cores</td>
+      <td>{{ vm.cores }}</td>
+    </tr>
+    <tr>
+      <td>RAM</td>
+      <td>{{ vm.ram }} GB</td>
+    </tr>
+    <tr>
+      <td>Disco</td>
+      <td>{{ vm.disc }} GB</td>
+    </tr>
+    <tr>
+      <td>Sistema Operativo</td>
+      <td>{{ vm.operatingSystem }}</td>
+    </tr>
+    <tr>
+      <td>Creado en</td>
+      <td>{{ vm.createdAt }}</td>
+    </tr>
+    <tr>
+      <td>Actualizado en</td>
+      <td>{{ vm.updatedAt ?? 'Sin fecha de axtualización' }}</td>
+    </tr>
+  </tbody>
+</table>

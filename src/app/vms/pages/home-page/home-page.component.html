@@ -1,0 +1,43 @@
+<div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+    <div class="card shadow-2-strong" style="border-radius: 1rem; width: 100%; height: 90vh;">
+      <div class="card-body p-5 text-center">
+        <h3 class="mb-5">Maquinas Virtuales</h3>
+        <div class="d-flex flex-column h-100">
+          <button
+            routerLink="/vms/create"
+            routerLinkActive="active"
+            type="button"
+            class="btn btn-success m-2 d-block w-100"
+            *ngIf="isAdministrator()"
+          >Crear</button>
+          <button
+            type="button" class="btn btn-warning m-2 d-block w-100"
+            *ngIf="isAdministrator()"
+            routerLink="/vms/update"
+            routerLinkActive="active"
+          >Editar</button>
+          <button type="button" class="btn btn-danger m-2 d-block w-100"
+            routerLink="/vms/delete"
+            routerLinkActive="active"
+           *ngIf="isAdministrator()"
+          >Eliminar</button>
+          <button type="button" class="btn btn-info m-2 d-block w-100"
+            routerLink="/vms/get-by-id"
+            routerLinkActive="active"
+          >Obtener Por Id</button>
+          <button type="button" class="btn btn-primary m-2 d-block w-100"
+            routerLink="/vms/get-all"
+            routerLinkActive="active"
+          >Ver Todos</button>
+          <br><br>
+          <button
+            type="button"
+            class="btn btn-dark m-2 d-block w-100"
+            (click)="closeSession()"
+          >Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

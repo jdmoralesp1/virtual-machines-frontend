@@ -1,0 +1,94 @@
+<div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+    <div
+      class="card shadow-2-strong"
+      style="border-radius: 1rem; width: 100%; height: 90vh"
+    >
+      <div class="card-body p-5 text-center">
+        <h5 class="mb-2">Crear Maquina Virtual</h5>
+        <div data-mdb-input-init class="form-outline mb-4 text-start">
+          <label class="form-label">Cores:</label>
+          <input
+            type="number"
+            class="form-control form-control"
+            #coresInput="ngModel"
+            name="cores"
+            [(ngModel)]="cores"
+            required
+            min="1"
+            placeholder="Cores de la cpu"
+          />
+          <br />
+          <label class="form-label">Ram:</label>
+          <input
+            type="number"
+            class="form-control form-control"
+            #ramInput="ngModel"
+            name="ram"
+            [(ngModel)]="ram"
+            required
+            min="1"
+            placeholder="Ram en GB"
+          />
+          <br />
+          <label class="form-label">Disco:</label>
+          <input
+            type="number"
+            class="form-control form-control"
+            #discInput="ngModel"
+            name="disc"
+            [(ngModel)]="disc"
+            required
+            min="1"
+            placeholder="Disco en GB"
+          />
+          <br>
+          <label class="form-label">Sistema Operativo:</label>
+          <select
+            class="form-control form-control"
+            [(ngModel)]="selectedOS"
+            name="operatingSystem"
+          >
+            <option *ngFor="let os of operatingSystems" [value]="+os.value">
+              {{ os.label }}
+            </option>
+          </select>
+
+          <div *ngIf="coresInput.invalid && coresInput.touched" class="text-danger mt-1">
+            <small *ngIf="coresInput.errors!['required']">El campo cores es obligatorio.</small>
+            <small *ngIf="coresInput.errors!['min']">El número de cores debe ser mayor a cero.</small>
+          </div>
+          <div *ngIf="ramInput.invalid && ramInput.touched" class="text-danger mt-1">
+            <small *ngIf="ramInput.errors!['required']">El campo ram es obligatorio.</small>
+            <small *ngIf="ramInput.errors!['min']">El número de Gb de ram debe ser mayor a cero.</small>
+          </div>
+          <div *ngIf="discInput.invalid && discInput.touched" class="text-danger mt-1">
+            <small *ngIf="discInput.errors!['required']">El campo disco es obligatorio.</small>
+            <small *ngIf="discInput.errors!['min']">El número de Gb de disco debe ser mayor a cero.</small>
+          </div>
+          <br><br>
+
+          <div class="d-flex flex-column h-100">
+          <button
+            type="button"
+            class="btn btn-success d-block w-80"
+            [disabled]="coresInput.invalid || ramInput.invalid || discInput.invalid"
+            (click)="create()"
+          >
+            Crear
+          </button>
+          <br>
+          <button
+            type="button"
+            class="btn btn-primary d-block w-80"
+            routerLink="/vms"
+            routerLinkActive="active"
+          >
+            Cancelar
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

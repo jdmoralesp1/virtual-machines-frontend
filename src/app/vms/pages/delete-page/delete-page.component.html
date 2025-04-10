@@ -1,0 +1,50 @@
+<div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+    <div class="card shadow-2-strong" style="border-radius: 1rem">
+      <div class="card-body p-5 text-center">
+        <h5 class="mb-2">Eliminar Maquina Virtual</h5>
+        <div data-mdb-input-init class="form-outline mb-4 text-start">
+          <label class="form-label">Ingrese id de maquina virtual:</label>
+          <input
+            type="number"
+            class="form-control form-control"
+            #idVmInput="ngModel"
+            name="idVm"
+            [(ngModel)]="idVm"
+            required
+            min="1"
+            placeholder="id de maquina virtual"
+          />
+          <br />
+          <button
+            type="button"
+            class="btn btn-danger"
+            [disabled]="idVmInput.invalid"
+            (click)="deleteById()"
+          >
+            Eliminar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary m-2"
+            routerLink="/vms"
+            routerLinkActive="active"
+          >
+            Cancelar
+          </button>
+          <div
+            *ngIf="idVmInput.invalid && idVmInput.touched"
+            class="text-danger mt-1"
+          >
+            <small *ngIf="idVmInput.errors!['required']"
+              >El campo id de maquina virtual es obligatorio.</small
+            >
+            <small *ngIf="idVmInput.errors!['min']"
+              >El id de maquina virtual debe ser mayor a cero.</small
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
