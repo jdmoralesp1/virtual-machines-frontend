@@ -28,3 +28,4 @@ jobs:
           args: deploy --dir=dist/prueba-tecnica/browser --prod  # Reemplaza "dist/..." con tu carpeta de build
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}  # Opcional: Si tienes múltiples sitios
