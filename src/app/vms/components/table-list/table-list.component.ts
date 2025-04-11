@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { GetAllResponse } from '../../interfaces/get-all-response';
 
 @Component({
@@ -6,7 +6,12 @@ import { GetAllResponse } from '../../interfaces/get-all-response';
   templateUrl: './table-list.component.html',
   styles: ``
 })
-export class TableListComponent {
+export class TableListComponent implements OnInit {
+  ngOnInit(): void {
+    this.vms = [];
+  }
+
   @Input()
   vms: GetAllResponse[] = [];
+
 }
