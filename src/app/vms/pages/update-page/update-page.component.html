@@ -19,14 +19,25 @@
             placeholder="id de maquina virtual"
           />
           <br>
-          <button
-            type="button"
-            class="btn btn-info d-block w-80"
-            (click)="searchById()"
-          >
-            Buscar
-          </button>
-          <br>
+          <div class="d-flex w-100 gap-2 mb-2">
+            <button
+              type="button"
+              class="btn btn-info w-50"
+              (click)="searchById()"
+              [disabled]="idVmInput.invalid"
+            >
+              Buscar
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning w-50"
+              [disabled]="idVmInput.invalid"
+              (click)="resetForm(true)"
+            >
+              Limpiar
+            </button>
+          </div>
+
           <div *ngIf="idVmInput.invalid && idVmInput.touched" class="text-danger mt-1">
             <small *ngIf="idVmInput.errors!['required']">El campo id de maquina virtual es obligatorio.</small>
             <small *ngIf="idVmInput.errors!['min']">El id de maquina virtual debe ser mayor a cero.</small>
@@ -101,7 +112,7 @@
           <button
             type="button"
             class="btn btn-success d-block w-80"
-            [disabled]="coresInput.invalid || ramInput.invalid || discInput.invalid"
+            [disabled]="coresInput.invalid || ramInput.invalid || discInput.invalid || isDisabledInputs"
             (click)="update()"
           >
             Actualizar

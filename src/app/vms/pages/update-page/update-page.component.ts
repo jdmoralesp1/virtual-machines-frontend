@@ -58,6 +58,7 @@ export class UpdatePageComponent implements OnInit {
   isDisabledInputs: boolean = true;
 
   searchById(): void {
+    this.resetForm(false);
     this.vmsService.getById(this.idVm!).subscribe({
       next: (data) => {
         let dataResponse: GenericResponse<GetByIdResponse> = data as GenericResponse<GetByIdResponse>;
@@ -91,7 +92,7 @@ export class UpdatePageComponent implements OnInit {
         let dataResponse: GenericResponse<string> = data as GenericResponse<string>;
         if (dataResponse.data !== null && dataResponse.data !== undefined) {
           createAlert('success', 'Maquina Virtual Actualizada Correctamente', dataResponse.data,)
-          this.resetForm();
+          this.resetForm(true);
         } else {
           createAlert('error', 'Ocurrió un error al actualizar la maquina virtual', dataResponse.message)
         }
@@ -102,13 +103,13 @@ export class UpdatePageComponent implements OnInit {
     });
   }
 
-  resetForm(): void {
+  resetForm(resetVm: boolean): void {
     this.selectedOS = this.operatingSystems[0].value;
     this.cores = null;
     this.ram = null;
     this.disc = null;
     this.isDisabledInputs = true;
-    this.idVm = null;
+    this.idVm = resetVm ? null : this.idVm;
   }
 
 }

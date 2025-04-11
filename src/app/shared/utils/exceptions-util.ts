@@ -14,8 +14,11 @@ export function errorHandler(error: any, router: Router): void{
   }
 
   let errorMessage: string | null = null;
-  if(responseError.InvalidParams !== undefined ) {
-    errorMessage = getFirstInvalidParamMessage(responseError.InvalidParams);
+
+  if(error.status === 422){
+    if(responseError.InvalidParams !== undefined ) {
+      errorMessage = getFirstInvalidParamMessage(responseError.InvalidParams);
+    }
   }
 
   createAlert('error', 'Error', errorMessage || 'Ocurrió un error inesperado, intente nuevamente.');
