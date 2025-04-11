@@ -6,6 +6,7 @@ import { createAlert } from '../../../shared/utils/alert';
 import { GetByIdResponse } from '../../interfaces/get-by-id-response';
 import { isLoggedIn } from '../../../shared/utils/auth-util';
 import { SignalRService } from '../../../shared/services/signalr.service';
+import { errorHandler } from '../../../shared/utils/exceptions-util';
 
 @Component({
   selector: 'app-get-by-id-page',
@@ -45,7 +46,7 @@ export class GetByIdPageComponent implements OnInit {
         }
       },
       error: (error) => {
-        cerrorHandler(error, this.router);
+        errorHandler(error, this.router);
       },
     });
   }
@@ -54,8 +55,5 @@ export class GetByIdPageComponent implements OnInit {
     this.idVm = null;
     this.vm = null;
   }
-}
-function cerrorHandler(error: any, router: Router) {
-  throw new Error('Function not implemented.');
 }
 
