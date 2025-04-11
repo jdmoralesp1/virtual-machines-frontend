@@ -6,6 +6,7 @@ import { GenericResponse } from '../../interfaces/generic-response';
 import { createAlert } from '../../../shared/utils/alert';
 import { isLoggedIn } from '../../../shared/utils/auth-util';
 import { errorHandler } from '../../../shared/utils/exceptions-util';
+import { SignalRService } from '../../../shared/services/signalr.service';
 
 @Component({
   selector: 'app-get-all-page',
@@ -14,7 +15,12 @@ import { errorHandler } from '../../../shared/utils/exceptions-util';
 })
 export class GetAllPageComponent implements OnInit {
 
-  constructor(private vmsService: VmsService, private router: Router) { }
+  constructor(
+    private vmsService: VmsService,
+    private router: Router,
+    private signalRService: SignalRService
+  ) { }
+
   vms: GetAllResponse[] = [];
 
   ngOnInit(): void {
@@ -23,6 +29,17 @@ export class GetAllPageComponent implements OnInit {
     if(!isLoggedIn()){
       this.router.navigate(['/auth/login']);
     }
+
+    this.signalRService.virtualMachine$.subscribe(vm => {
+      if (vm) {
+        const index = this.vms.findIndex(v => v.id === vm.id);
+        if (index !== -1) {
+          this.vms[index] = vm;
+        } else {
+          this.vms.push(vm);
+        }
+      }
+    });
   }
 
   getAll(): void{

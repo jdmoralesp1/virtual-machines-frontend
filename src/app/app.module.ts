@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
+import { SignalRService } from './shared/services/signalr.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [SignalRService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

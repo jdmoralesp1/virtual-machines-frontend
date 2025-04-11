@@ -1,7 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7270/api',
-  apiVmSection: '/v1/VirtualMachine',
-  apiAuthSection: '/v1/Auth'
-
+  apiUrl: 'https://localhost:7270',
+  apiVmSection: '/api/v1/VirtualMachine',
+  apiAuthSection: '/api/v1/Auth'
 };
