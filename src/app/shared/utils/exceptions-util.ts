@@ -4,7 +4,6 @@ import { createAlert } from "./alert";
 import { getFirstInvalidParamMessage } from "./validator";
 
 export function errorHandler(error: any, router: Router): void{
-  debugger;
   const responseError = error.error as ResponseErrorValidation;
   if(error.status === 401) {
     createAlert('error', 'Error', 'Sesión expirada. Por favor, inicia sesión nuevamente.');
