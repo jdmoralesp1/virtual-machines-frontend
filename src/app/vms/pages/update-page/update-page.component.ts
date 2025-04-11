@@ -8,6 +8,7 @@ import { createAlert } from '../../../shared/utils/alert';
 import { UpdateVM } from '../../interfaces/update';
 import { isAdministrator, isLoggedIn } from '../../../shared/utils/auth-util';
 import { errorHandler } from '../../../shared/utils/exceptions-util';
+import { SignalRService } from '../../../shared/services/signalr.service';
 
 @Component({
   selector: 'app-update-page',
@@ -24,9 +25,22 @@ export class UpdatePageComponent implements OnInit {
     if(!isAdministrator()){
       this.router.navigate(['/vms']);
     }
+
+    this.signalRService.virtualMachine$.subscribe(vm => {
+      if (vm) {
+        if(vm.id === this.idVm){
+          console.log({vm});
+          this.cores = vm.cores;
+          this.ram = vm.ram;
+          this.disc = vm.disc;
+          this.selectedOS = OperatingSystems[vm.operatingSystem as keyof typeof OperatingSystems];
+          this.idVm = vm.id;
+        }
+      }
+    });
   }
 
-  constructor(private vmsService: VmsService, private router: Router) { }
+  constructor(private vmsService: VmsService, private router: Router, private signalRService: SignalRService) { }
 
   operatingSystems = Object.keys(OperatingSystems)
     .filter((key) => isNaN(Number(key)))

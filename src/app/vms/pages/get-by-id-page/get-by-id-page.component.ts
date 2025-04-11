@@ -5,6 +5,7 @@ import { GenericResponse } from '../../interfaces/generic-response';
 import { createAlert } from '../../../shared/utils/alert';
 import { GetByIdResponse } from '../../interfaces/get-by-id-response';
 import { isLoggedIn } from '../../../shared/utils/auth-util';
+import { SignalRService } from '../../../shared/services/signalr.service';
 
 @Component({
   selector: 'app-get-by-id-page',
@@ -13,13 +14,22 @@ import { isLoggedIn } from '../../../shared/utils/auth-util';
 })
 export class GetByIdPageComponent implements OnInit {
 
+  constructor(private vmsService: VmsService, private router: Router, private signalRService: SignalRService) { }
+
   ngOnInit(): void {
     if(!isLoggedIn()){
       this.router.navigate(['/auth/login']);
     }
-  }
 
-  constructor(private vmsService: VmsService, private router: Router) { }
+    this.signalRService.virtualMachine$.subscribe(vm => {
+      if (vm) {
+        if(vm.id === this.idVm){
+          console.log({vm});
+          this.vm = vm;
+        }
+      }
+    });
+  }
 
   idVm: number | null = null;
   vm: GetByIdResponse | null = null;
